@@ -1,0 +1,57 @@
+## Ignorar estos archivos y carpetas ##
+
+# Archivos de usuario
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Carpeta VS
+.vs/
+.vscode/
+
+# Archivos de compilación
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# Archivos de publicación
+publish/
+
+# Archivos de logs
+logs/
+*.log
+
+# Archivos de NuGet
+.nuget/
+*.nupkg
+packages/
+
+# Archivos de resharper
+_ReSharper.*/
+
+# Archivos de Azure
+[Aa]rticle-[Aa]rtifact-[Pp]review[Gg]uardrails/
+*.jfm
+
+# Archivos de Mac
+.DS_Store
+
+# Archivos de Rider
+.idea/
+
+# Archivos de temp
+[Tt]emp/
+[Tt]mp/
+
+# Archivos de SQL Server
+App_Data/
+*.mdf
+*.ldf
+
+# Configuración local
+appsettings.Development.json
+
+# Archivos de migraciones (OPCIONAL - si quieres subirlos, quita esta línea)
+# Migrations/
