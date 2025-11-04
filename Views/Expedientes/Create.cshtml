@@ -1,0 +1,65 @@
+﻿@model SistemaExpedientesAcademicos.Models.Expedientes
+@{
+    ViewData["Title"] = "Crear Expediente";
+    var alumnos = ViewData["Alumnos"] as List<SistemaExpedientesAcademicos.Models.Alumno>;
+    var materias = ViewData["Materias"] as List<SistemaExpedientesAcademicos.Models.Materias>;
+}
+
+<h1>Crear Nuevo Expediente</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label>Alumno:</label>
+        <select name="AlumnoId" class="form-control" required>
+            <option value="">Seleccionar Alumno</option>
+            @if (alumnos != null)
+            {
+                foreach (var alumno in alumnos)
+                {
+                    <option value="@alumno.AlumnoId">@alumno.Nombre @alumno.Apellido - @alumno.Grado</option>
+                }
+            }
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Materia:</label>
+        <select name="MateriaId" class="form-control" required>
+            <option value="">Seleccionar Materia</option>
+            @if (materias != null)
+            {
+                foreach (var materia in materias)
+                {
+                    <option value="@materia.MateriaId">@materia.NombreMateria - @materia.Docente</option>
+                }
+            }
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Nota Final (0-10):</label>
+        <input type="number" step="0.1" min="0" max="10" name="NotaFinal" class="form-control" required />
+    </div>
+    
+    <div class="form-group">
+        <label>Observaciones:</label>
+        <textarea name="Observaciones" class="form-control" rows="3"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Crear Expediente</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@if (alumnos == null || !alumnos.Any())
+{
+    <div class="alert alert-warning mt-3">
+        <strong>Advertencia:</strong> No hay alumnos registrados. <a href="/Alumnos/Create">Crear alumno primero</a>
+    </div>
+}
+
+@if (materias == null || !materias.Any())
+{
+    <div class="alert alert-warning mt-3">
+        <strong>Advertencia:</strong> No hay materias registradas. <a href="/Materias/Create">Crear materia primero</a>
+    </div>
+}

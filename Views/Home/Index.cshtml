@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Sistema de Expedientes Académicos - Colegio San José";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Colegio San José</h1>
+    <p class="lead">Sistema de Gestión de Expedientes Académicos</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">
+                <h5>Gestión de Alumnos</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Administrar información de estudiantes</p>
+                <a href="/Alumnos" class="btn btn-light">Ir a Alumnos</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">
+                <h5>Gestión de Materias</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Administrar materias y docentes</p>
+                <a href="/Materias" class="btn btn-light">Ir a Materias</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">
+                <h5>Expedientes Académicos</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Registrar notas y observaciones</p>
+                <a href="/Expedientes" class="btn btn-light">Ir a Expedientes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">
+                <h5>Reportes de Promedios</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Ver promedios generales por alumno</p>
+                <a href="/Home/Promedios" class="btn btn-light">Ver Promedios</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">
+                <h5>Acciones Rápidas</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="/Alumnos/Create" class="btn btn-outline-light">Nuevo Alumno</a>
+                    <a href="/Materias/Create" class="btn btn-outline-light">Nueva Materia</a>
+                    <a href="/Expedientes/Create" class="btn btn-outline-light">Nuevo Expediente</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

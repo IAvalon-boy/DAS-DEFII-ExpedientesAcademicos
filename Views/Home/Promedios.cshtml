@@ -1,0 +1,105 @@
+﻿@model List<SistemaExpedientesAcademicos.Models.PromedioAlumnoViewModel>
+@{
+    ViewData["Title"] = "Promedios de Alumnos";
+}
+
+<h1>Promedios de Alumnos</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Alumno</th>
+                <th>Grado</th>
+                <th>Cantidad de Materias</th>
+                <th>Promedio General</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NombreCompleto</td>
+                    <td>@item.Grado</td>
+                    <td>@item.CantidadMaterias</td>
+                    <td>
+                        <span class="badge @(item.PromedioNotas >= 6 ? "bg-success" : "bg-danger")">
+                            @item.PromedioNotas.ToString("F2")
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <h4>Gráfico de Promedios</h4>
+        <canvas id="promediosChart" width="400" height="200"></canvas>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <h4>No hay datos para mostrar</h4>
+        <p>Para ver promedios, necesitas:</p>
+        <ul>
+            <li>Crear al menos 1 alumno</li>
+            <li>Crear al menos 1 materia</li>
+            <li>Crear expedientes académicos con notas</li>
+        </ul>
+        <div class="mt-3">
+            <a href="/Alumnos/Create" class="btn btn-primary">Crear Alumno</a>
+            <a href="/Materias/Create" class="btn btn-primary">Crear Materia</a>
+            <a href="/Expedientes/Create" class="btn btn-primary">Crear Expediente</a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            @if (Model != null && Model.Any())
+            {
+                <text>
+                var alumnos = @Html.Raw(Json.Serialize(Model.Select(m => m.NombreCompleto)));
+                var promedios = @Html.Raw(Json.Serialize(Model.Select(m => m.PromedioNotas)));
+                
+                var ctx = document.getElementById('promediosChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: alumnos,
+                        datasets: [{
+                            label: 'Promedio de Notas',
+                            data: promedios,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10,
+                                title: {
+                                    display: true,
+                                    text: 'Promedio'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Alumnos'
+                                }
+                            }
+                        }
+                    }
+                });
+                </text>
+            }
+        });
+    </script>
+}

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SistemaExpedientesAcademicos.Models.Expedientes>
+@{
+    ViewData["Title"] = "Expedientes";
+}
+
+<h1>Expedientes Académicos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Crear Nuevo Expediente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Materia</th>
+            <th>Nota Final</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Alumno?.Nombre @item.Alumno?.Apellido</td>
+                    <td>@item.Materia?.NombreMateria</td>
+                    <td>@item.NotaFinal</td>
+                    <td>@item.Observaciones</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No hay expedientes registrados</td>
+            </tr>
+        }
+    </tbody>
+</table>

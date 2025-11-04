@@ -1,0 +1,41 @@
+﻿@model List<SistemaExpedientesAcademicos.Models.Alumno>
+@{
+    ViewData["Title"] = "Alumnos";
+}
+
+<h1>Alumnos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Crear Nuevo Alumno</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha Nacimiento</th>
+            <th>Grado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Apellido</td>
+                    <td>@item.FechaNacimiento.ToShortDateString()</td>
+                    <td>@item.Grado</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No hay alumnos registrados</td>
+            </tr>
+        }
+    </tbody>
+</table>

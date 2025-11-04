@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SistemaExpedientesAcademicos.Models.Materias>
+@{
+    ViewData["Title"] = "Materias";
+}
+
+<h1>Materias</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Crear Nueva Materia</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Docente</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NombreMateria</td>
+                    <td>@item.Docente</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MateriaId" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.MateriaId" class="btn btn-info btn-sm">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.MateriaId" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">No hay materias registradas</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+﻿@model SistemaExpedientesAcademicos.Models.Materias
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Materia</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreMateria)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreMateria)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Docente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Docente)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MateriaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
